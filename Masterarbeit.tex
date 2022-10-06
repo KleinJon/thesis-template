@@ -1,0 +1,121 @@
+\documentclass[a4paper, 12pt, numbers=noenddot, listof=nochaptergap]{scrreprt} %numbers=noenddot: no dot after figure number (is generated because of appendix)
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+%\usepackage[babel, german=qoutes]{csqoutes}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{float}
+\usepackage{subfig}
+\usepackage{lastpage}
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm]{geometry} 
+\usepackage[onehalfspacing]{setspace} % 1.5 line distance
+\usepackage{makecell}
+\usepackage{lscape}
+
+\usepackage[headsepline, automark]{scrlayer-scrpage}
+\renewcommand*{\chaptermarkformat}{} % leftmark without chapter-number
+\renewcommand*{\headfont}{\normalfont} % fonts not italic
+\clearpairofpagestyles
+\pagestyle{scrheadings}
+\ihead{Kapitel \thechapter}
+\ohead{\leftmark}
+\ofoot*{Seite~\pagemark}
+
+\newpairofpagestyles[scrheadings]{quellenverzeichnis}{\ihead*{}}
+
+\usepackage[backend=biber, style=ieee]{biblatex} %literature IEEE Style
+\addbibresource{literatur.bib}
+
+\usepackage{chngcntr} % remove chapter-number from footnotes, figures and tables
+\counterwithout{footnote}{chapter}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+
+\usepackage[hidelinks]{hyperref}
+
+\setlength{\parindent}{0em} % remove auto-indent from latex
+
+\usepackage[printonlyused]{acronym}
+
+\hypersetup{
+	pdftitle = title,
+	pdfauthor = Alice,
+	pdfsubject = Master thesis,
+	hidelinks = true
+}
+
+	
+\begin{document}
+\renewcommand{\thepage}{C1} % set cover page as page C1
+\include{Chapter/0-0.Deckblatt}
+\restoregeometry
+\newpage
+
+\pagestyle{plain}
+\pagenumbering{Roman} % roman numbering
+\setcounter{page}{1} % set this page as page 1
+\onehalfspacing
+
+\include{Chapter/0-1.Erklaerung}
+\newpage
+
+\include{Chapter/0-2.Abstract_de}
+\newpage
+
+\include{Chapter/0-3.Abstract_en}
+\newpage
+
+\listoffigures
+
+\listoftables
+
+\include{Chapter/Akronyme}
+
+\tableofcontents
+\newpage
+
+\pagestyle{scrheadings}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\onehalfspacing
+
+\include{Chapter/1.Einleitung}
+\newpage
+
+\include{Chapter/2.Grundlagen}
+\newpage
+
+\include{Chapter/3.Analyse}
+\newpage
+
+\include{Chapter/4.Definition_der_Anforderungen}
+\newpage
+
+\include{Chapter/5.Entwicklung}
+\newpage
+
+\include{Chapter/6.Ergebnis}
+\newpage
+
+\include{Chapter/7.Evaluierung}
+\newpage
+
+\include{Chapter/8.Zusammenfassung_und_Ausblick}
+\newpage
+
+\pagestyle{quellenverzeichnis}
+\setcounter{biburllcpenalty}{7000} % linebreak in URL
+\setcounter{biburlucpenalty}{8000} % linebreak in URL
+\printbibliography[heading=bibintoc, title={Literaturverzeichnis}]
+\newpage
+
+\pagestyle{scrheadings}
+\appendix
+\include{Chapter/Interview1}
+	
+\end{document}
